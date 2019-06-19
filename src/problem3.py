@@ -2,8 +2,8 @@
 PRACTICE Test 1, problem 3.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Joe OConnell.
+"""  # done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -37,7 +37,7 @@ def main():
 def run_test_problem3a():
     """ Tests the   problem3a   function. """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # done: 2. Implement this TEST function.
     #   It TESTS the  problem1a  function defined below.
     #   Include at least **   5   ** tests (we wrote four for you).
     # ------------------------------------------------------------------
@@ -102,6 +102,33 @@ def run_test_problem3a():
     # Below this comment (or integrated with one of the above tests,
     # your choice), add 1 more test case of your own choosing.
     # ------------------------------------------------------------------
+    # Window 4:
+    title = 'Problem 4. Test 5'
+    window4 = rg.RoseWindow(500, 500, title)
+
+    # Test 5 (it is on window 4):
+    point = rg.Point(10,10)
+    expected = 25
+    answer = problem3a(window4, point, 5)
+    print()
+    print('Test 5 expected:', expected)
+    print('       actual:  ', answer)
+
+    window4.close_on_mouse_click()
+
+    # Window 5:
+    title = 'Problem 4. Test 6'
+    window5 = rg.RoseWindow(500, 500, title)
+
+    # Test 6 (it is on window 4):
+    point = rg.Point(10, 10)
+    expected = 88
+    answer = problem3a(window5, point, 10)
+    print()
+    print('Test 6 expected:', expected)
+    print('       actual:  ', answer)
+
+    window5.close_on_mouse_click()
 
 
 def problem3a(window, point, n):
@@ -137,7 +164,7 @@ def problem3a(window, point, n):
         :type n:      int
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # done: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -145,6 +172,31 @@ def problem3a(window, point, n):
     #    DIFFICULTY:      7 or 8
     #    TIME ESTIMATE:   20 to 35 minutes.
     # ------------------------------------------------------------------
+    point2 = rg.Point(point.x,point.y+50)
+    line = rg.Line(point,point2)
+    line.attach_to(window)
+    line.thickness = 1
+    total = n+2
+    window.render()
+    for k in range(n-1):
+        if k << 6:
+            line.thickness = line.thickness +2
+            total = total + 2*(k+1)
+
+        if k >= 6:
+            total = 49 + 13 * (n-7)
+            line.thickness = 13
+        point.x = point.x + 20
+        point2.x = point2.x + 20
+        point.y = point.y + 10
+        point2.y = point2.y + 10
+
+        line = rg.Line(point,point2)
+        line.attach_to(window)
+        window.render()
+    window.render()
+    return total
+
 
 
 def run_test_problem3b():
